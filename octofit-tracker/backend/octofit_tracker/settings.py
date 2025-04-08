@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+# Add codespace-specific API endpoint suffix
+if 'CODESPACE_NAME' in os.environ:
+    CODESPACE_NAME = os.environ['CODESPACE_NAME']
+    API_ENDPOINT_SUFFIX = f"https://{CODESPACE_NAME}-8000.preview.app.github.dev/"
+else:
+    API_ENDPOINT_SUFFIX = "http://localhost:8000/"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
